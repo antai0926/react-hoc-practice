@@ -1,0 +1,7 @@
+@use '../user-profile/user-profile.styles';
+
+.container {
+  &.user-list {
+    background-color: lightseagreen;
+  }
+}

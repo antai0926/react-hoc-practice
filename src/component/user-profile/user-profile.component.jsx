@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './user-profile.styles.scss';
+import './_user-profile.styles.scss';
 
 const UserProfile = (props) => {
   const [posts, setPosts] = useState([]);
