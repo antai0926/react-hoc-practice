@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './_user-profile.styles.scss';
+import withData from '../../HOC/with-data';
 
-const UserProfile = (props) => {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => setPosts(data.slice(0, 3)));
-  }, []);
-
+const UserProfile = ({ data, name, email }) => {
   return (
     <div className="container">
-      <h1 className="name"> {props.name} </h1>
-      <h2 className="email"> {props.email} </h2>
-      <h3>Post Counts: {posts.length}</h3>
+      <h1 className="name"> {name} </h1>
+      <h2 className="email"> {email} </h2>
+      <h3>Post Counts: {data.length}</h3>
       posts:
-      {posts.map((post) => (
+      {data.map((post) => (
         <div className="post" key={post.id}>
           <h1>{post.title}</h1>
           <p>{post.body}</p>
@@ -25,4 +19,4 @@ const UserProfile = (props) => {
   );
 };
 
-export default UserProfile;
+export default withData(UserProfile);
