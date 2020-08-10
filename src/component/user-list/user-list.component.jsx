@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './user-list.styles.scss';
+import withData from '../../HOC/with-data';
 
-const UserList = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((data) => setUsers(data.slice(0, 3)));
-  }, []);
+const UserList = ({ data }) => {
   return (
     <div className="container user-list">
-      <h3>Users Counts: {users.length}</h3>
+      <h3>Users Counts: {data.length}</h3>
       User List:
-      {users.map((user) => (
+      {data.map((user) => (
         <div className="post" key={user.id}>
           <h1>{user.name}</h1>
           <p>{user.email}</p>
@@ -22,4 +17,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default withData(UserList);
